@@ -13,13 +13,10 @@ function ProfileSideBar(propriedades) {
 
 export default function Home() {
   const usuario = 'brunaguimaraesssss';
-  const pessoasFavoritas = [
-    'SpigoNet', 
+  const pessoasFavoritas = [ 
     'VGuimaraes5', 
-    'JoaoFFMarques', 
     'KamilaFreitas', 
     'kleberandrade', 
-    'gs7joao',
     'GustavoSpigo', 
     'rafaballerini', 
     'omariosouto'
