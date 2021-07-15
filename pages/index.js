@@ -22,6 +22,28 @@ function ProfileSideBar(propriedades) {
   )
 }
 
+function ProfileRelationsBox(propriedades) {
+  return (
+    <ProfileRelationsBoxWrapper>
+      <h2 className="smallTitle">
+        {propriedades.title} ({propriedades.itens.length})
+      </h2> 
+      {/* <ul>
+          {comunidades.map((itemAtual) => {
+            return (
+              <li key={itemAtual.id}>
+                <a href={`/users/${itemAtual.title}`}>
+                <img src={itemAtual.image} />
+                <span>{itemAtual.title}</span>
+                </a>
+              </li>
+            )
+          })}
+        </ul> */}
+    </ProfileRelationsBoxWrapper>
+  )
+}
+
 export default function Home() {
   const [comunidades, setComunidades] = React.useState([{
     id:'4564521154621315241856526',
@@ -39,6 +61,18 @@ export default function Home() {
     'rafaballerini', 
     'omariosouto'
   ];
+
+  // Pegar o array de dados do github
+  const [seguidores, setSeguidores] = React.useState([]);
+  React.useEffect (function () {
+    fetch('https://api.github.com/users/brunaguimaraesssss/followers')
+      .then (function (respostaDoServidor) {
+      return respostaDoServidor.json();
+    })
+    .then (function (respostaCompleta) {
+      setSeguidores(respostaCompleta);
+    })
+  }, []) //array vazio para que ele rode apenas uma vez
 
   return (
     <>
@@ -112,6 +146,7 @@ export default function Home() {
               })}
             </ul>
           </ProfileRelationsBoxWrapper>
+          <ProfileRelationsBox title="Seguidores" itens={seguidores} />
           <ProfileRelationsBoxWrapper>
             <h2 className="smallTitle">
               Comunidades ({comunidades.length})
